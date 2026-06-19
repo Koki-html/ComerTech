@@ -1,13 +1,5 @@
-# DB-NoSQL-4-Evaluation
- The repository for the 4 evaluation of Database NoSQL - Inacap 2026
-
-## Dependencias usadas
-> [Express.js](https://www.npmjs.com/package/express)
-> [Dotenv](https://www.npmjs.com/package/dotenv)
-> [Mongoose](https://www.npmjs.com/package/mongoose)
-
-## Estructura de la Base de datos
-> "product" : {
+{
+    "product" : {
         "model" : "",
         "brand" : "",
         "price" : 0,
@@ -20,7 +12,7 @@
         "images" : [],
         "is_active" : true
     },
-> "person" : {
+    "person" : {
         "name" : "",
         "rut" : "",
         "mail" : {
@@ -40,7 +32,14 @@
             "apartment" : ""
         }
     },
-> "order" : {
+    "shipment" : {
+        "company" : "",
+        "tracking_number" : "",
+        "receipt_number" : "",
+        "mailing_address" : "",
+        "status" : ""
+    },
+    "order" : {
         "receipt_number" : "",
         "person_id" : "",
         "products" : [
@@ -51,31 +50,25 @@
         "created_at" : "",
         "updated_at" : ""
     },
-> "payment" : {
+    "payment" : {
         "order_id" : "",
         "amount" : 0,
         "payment_method" : "",
         "status" : "", 
         "created_at" : ""
     },
-> "shipment" : {
-    "company" : "",
-    "tracking_number" : "",
-    "receipt_number" : "",
-    "mailing_address" : "",
-    "status" : ""
-    },
-> "support_chat" : { 
+    "support_chat" : { 
         "person_id" : "",
         "number_order" : "",
         "created_at" : "",
         "updated_at" : "",
         "status" : ""
     },
-> "support_messages" : {
+    "support_messages" : {
         "chat_id" : "",
         "sender" : "",
         "content" : "",
         "date_time" : "",
         "is_read" : true
     }
+}
