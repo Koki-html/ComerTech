@@ -3,8 +3,11 @@
 
 ## Dependencias usadas
 > [Express.js](https://www.npmjs.com/package/express)
+> 
 > [Dotenv](https://www.npmjs.com/package/dotenv)
+> 
 > [Mongoose](https://www.npmjs.com/package/mongoose)
+> 
 
 ## Estructura de la Base de datos
 > "product" : {
@@ -19,7 +22,9 @@
         "description" : "",
         "images" : [],
         "is_active" : true
-    },
+    }
+
+
 > "person" : {
         "name" : "",
         "rut" : "",
@@ -50,28 +55,32 @@
         "status" : "",
         "created_at" : "",
         "updated_at" : ""
-    },
+    }
+
 > "payment" : {
         "order_id" : "",
         "amount" : 0,
         "payment_method" : "",
         "status" : "", 
         "created_at" : ""
-    },
+    }
+
 > "shipment" : {
     "company" : "",
     "tracking_number" : "",
     "receipt_number" : "",
     "mailing_address" : "",
     "status" : ""
-    },
+    }
+
 > "support_chat" : { 
         "person_id" : "",
         "number_order" : "",
         "created_at" : "",
         "updated_at" : "",
         "status" : ""
-    },
+    }
+
 > "support_messages" : {
         "chat_id" : "",
         "sender" : "",
