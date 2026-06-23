@@ -311,10 +311,3 @@ console.log(orderWithDetails);
 - Use aggregation pipelines for complex queries
 
 ---
-
-**Last Updated:** June 2026
-```
-
----
-
-**Last Updated:** June 2026

@@ -1,4 +1,4 @@
-# 🗄️ DB-NoSQL-4-Evaluation
+# 🗄️ ComerTech
 
 Repository for the fourth evaluation of the **NoSQL Databases** course at **INACAP (2026)**.
 
