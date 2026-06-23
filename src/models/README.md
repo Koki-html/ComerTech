@@ -313,8 +313,3 @@ console.log(orderWithDetails);
 ---
 
 **Last Updated:** June 2026
-```
-
----
-
-**Last Updated:** June 2026
