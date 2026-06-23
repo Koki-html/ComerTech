@@ -1,7 +1,7 @@
 {
   "name": "db-nosql-4-evaluation",
   "version": "1.0.0",
-  "description": "The repository for the 4 evaluation of Database NoSQL - Inacap 2026",
+  "description": "Repository for the fourth evaluation of the **NoSQL Databases** course at **INACAP (2026)**.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/Koki-html/DB-NoSQL-4-Evaluation#readme",
   "dependencies": {
-    "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongoose": "^9.6.3"
+    "mongoose": "^9.7.2",
+    "vite": "^8.0.16"
   }
 }

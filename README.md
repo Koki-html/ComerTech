@@ -1,319 +1,215 @@
-# 🗄️ DB-NoSQL-4-Evaluation
+# 🗄️ ComerTech
 
 Repository for the fourth evaluation of the **NoSQL Databases** course at **INACAP (2026)**.
 
+A comprehensive e-commerce platform database solution using MongoDB and Mongoose, demonstrating document-oriented database design principles.
+
 ---
 
-# 📖 Project Overview
+## 📖 Table of Contents
+
+- [🗄️ ComerTech](#️-comertech)
+  - [📖 Table of Contents](#-table-of-contents)
+  - [📖 Project Overview](#-project-overview)
+    - [Objectives](#objectives)
+  - [🛠️ Technologies](#️-technologies)
+  - [🏗️ Project Structure](#️-project-structure)
+  - [📊 Database Model](#-database-model)
+    - [Core Collections](#core-collections)
+    - [Support Collections](#support-collections)
+  - [⚙️ Installation](#️-installation)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+  - [🚀 Usage](#-usage)
+    - [Development Mode](#development-mode)
+    - [Production Build](#production-build)
+    - [Testing](#testing)
+  - [📡 API Endpoints](#-api-endpoints)
+    - [Products](#products)
+    - [Customers (Persons)](#customers-persons)
+  - [🤝 Contributing](#-contributing)
+  - [📄 License](#-license)
+  - [👨‍💻 Author](#-author)
+
+---
+
+## 📖 Project Overview
 
 This project presents the design of a **NoSQL database** for an e-commerce platform using **MongoDB** and **Mongoose**.
 
-The objective is to model product management, customer information, orders, payments, shipments, and customer support while applying document-oriented database principles.
+### Objectives
+
+The objective is to model and implement the following business domains while applying document-oriented database principles:
+
+- 📦 Product Management
+- 👥 Customer Information & Profiles
+- 🛒 Orders & Order Management
+- 💳 Payment Processing
+- 📮 Shipment Tracking
+- 💬 Customer Support System
 
 ---
 
-# 🛠️ Technologies
+## 🛠️ Technologies
 
-| Technology | Purpose                         |
-| ---------- | ------------------------------- |
-| Express.js | REST API Framework              |
-| MongoDB    | NoSQL Database                  |
-| Mongoose   | Object Data Modeling (ODM)      |
-| Dotenv     | Environment Variable Management |
-| Node.js    | JavaScript Runtime              |
+| Technology | Purpose                           | Version |
+| ---------- | --------------------------------- | ------- |
+| Node.js    | Runtime Environment               | Latest  |
+| MongoDB    | NoSQL Document Database           | -       |
+| Mongoose   | MongoDB Object Modeling           | ^9.7.2  |
+| Express.js | REST API Framework                | ^5.2.1  |
+| TypeScript | Type-Safe JavaScript              | -       |
+| Vite       | Frontend Build Tool               | ^8.0.16 |
 
 ---
 
-# 📦 Dependencies
+## 🏗️ Project Structure
 
-```bash
-npm install express mongoose dotenv
+```
+.
+├── src/
+│   ├── main.ts                 # Application entry point
+│   ├── controllers/            # Request handlers
+│   ├── routes/                 # API route definitions
+│   ├── models/                 # Mongoose schemas & interfaces
+│   │   ├── person.ts          # Person/Customer model
+│   │   └── product.ts         # Product model
+│   └── database/
+│       └── seed/              # Database seeding scripts
+├── public/                    # Static files
+│   ├── index.html
+│   ├── media/                 # Images and media assets
+│   └── style/                 # CSS stylesheets
+├── database.json              # Database configuration
+├── package.json
+└── README.md
 ```
 
 ---
 
-# 🏗️ Database Model
+## 📊 Database Model
 
 The database is composed of the following collections:
 
-* Product
-* Person
-* Order
-* Payment
-* Shipment
-* Support Chat
-* Support Messages
+### Core Collections
+
+| Collection       | Purpose                          |
+| --------------- | -------------------------------- |
+| **Products**    | E-commerce product catalog       |
+| **Persons**     | Customer & user information      |
+| **Orders**      | Customer purchases & transactions |
+| **Payments**    | Payment transaction records      |
+| **Shipments**   | Delivery tracking information    |
+
+### Support Collections
+
+| Collection          | Purpose                          |
+| ------------------- | -------------------------------- |
+| **Support Chats**   | Customer support conversations   |
+| **Support Messages**| Individual messages in chats     |
 
 ---
 
-# 📚 Collections
+## ⚙️ Installation
 
-## 🛍️ Product
+### Prerequisites
 
-Stores product information available in the catalog.
+- Node.js (v16 or higher)
+- npm or yarn package manager
+- MongoDB instance (local or cloud)
 
-### Structure
+### Setup
 
-```json
-{
-  "model": "",
-  "brand": "",
-  "price": 0,
-  "type_product": "",
-  "created_at": "",
-  "updated_at": "",
-  "stock": 0,
-  "specs": {},
-  "description": "",
-  "images": [],
-  "is_active": true
-}
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Koki-html/DB-NoSQL-4-Evaluation.git
+   cd DB-NoSQL-4-Evaluation
+   ```
 
-### Fields
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-| Field        | Description               |
-| ------------ | ------------------------- |
-| model        | Product model             |
-| brand        | Product manufacturer      |
-| price        | Product price             |
-| type_product | Product category          |
-| created_at   | Creation date             |
-| updated_at   | Last update date          |
-| stock        | Available inventory       |
-| specs        | Technical specifications  |
-| description  | Product description       |
-| images       | Product image URLs        |
-| is_active    | Product visibility status |
+3. **Configure environment variables**
+   ```bash
+   # Create a .env file with your MongoDB connection string
+   MONGODB_URI=mongodb://localhost:27017/db-nosql-evaluation
+   PORT=3000
+   ```
+
+4. **Seed the database** (optional)
+   ```bash
+   npm run seed
+   ```
 
 ---
 
-## 👤 Person
+## 🚀 Usage
 
-Stores customer information.
+### Development Mode
 
-### Structure
-
-```json
-{
-  "name": "",
-  "rut": "",
-  "mail": {
-    "mail_addres": "",
-    "is_verified": false
-  },
-  "phone": "",
-  "alt_phone": "",
-  "password_hash": "",
-  "birth_date": "",
-  "gender": "",
-  "address": {
-    "region": "",
-    "commune": "",
-    "street": "",
-    "number": "",
-    "apartment": ""
-  }
-}
+```bash
+npm run dev
 ```
 
-### Embedded Documents
+### Production Build
 
-#### Mail
-
-```json
-{
-  "mail_addres": "",
-  "is_verified": false
-}
+```bash
+npm run build
+npm start
 ```
 
-#### Address
+### Testing
 
-```json
-{
-  "region": "",
-  "commune": "",
-  "street": "",
-  "number": "",
-  "apartment": ""
-}
+```bash
+npm test
 ```
 
 ---
 
-## 📦 Order
+## 📡 API Endpoints
 
-Stores customer purchase orders.
+*(To be documented based on your controllers)*
 
-### Structure
+### Products
+- `GET /api/products` - List all products
+- `GET /api/products/:id` - Get product details
+- `POST /api/products` - Create new product
+- `PUT /api/products/:id` - Update product
+- `DELETE /api/products/:id` - Delete product
 
-```json
-{
-  "receipt_number": "",
-  "person_id": "",
-  "products": [
-    {
-      "product_id": "",
-      "amount": "",
-      "unit_price": 0
-    }
-  ],
-  "total_price": 0,
-  "status": "",
-  "created_at": "",
-  "updated_at": ""
-}
-```
-
-### References
-
-| Field     | References |
-| --------- | ---------- |
-| person_id | Person     |
-
-### Embedded Array
-
-```json
-{
-  "product_id": "",
-  "amount": "",
-  "unit_price": 0
-}
-```
+### Customers (Persons)
+- `GET /api/persons` - List all customers
+- `GET /api/persons/:id` - Get customer details
+- `POST /api/persons` - Register new customer
+- `PUT /api/persons/:id` - Update customer
+- `DELETE /api/persons/:id` - Delete customer
 
 ---
 
-## 💳 Payment
+## 🤝 Contributing
 
-Stores payment records associated with orders.
+This is an academic project. For improvements or bug reports, please open an issue or submit a pull request.
 
-### Structure
-
-```json
-{
-  "order_id": "",
-  "amount": 0,
-  "payment_method": "",
-  "status": "",
-  "created_at": ""
-}
-```
-
-### References
-
-| Field    | References |
-| -------- | ---------- |
-| order_id | Order      |
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-## 🚚 Shipment
+## 📄 License
 
-Stores shipment tracking information.
-
-### Structure
-
-```json
-{
-  "company": "",
-  "tracking_number": "",
-  "receipt_number": "",
-  "mailing_address": "",
-  "status": ""
-}
-```
+This project is licensed under the ISC License - see the LICENSE file for details.
 
 ---
 
-## 🎧 Support Chat
+## 👨‍💻 Author
 
-Stores customer support tickets.
-
-### Structure
-
-```json
-{
-  "person_id": "",
-  "number_order": "",
-  "created_at": "",
-  "updated_at": "",
-  "status": ""
-}
-```
-
-### References
-
-| Field        | References |
-| ------------ | ---------- |
-| person_id    | Person     |
-| number_order | Order      |
+**Koki** - Created for INACAP NoSQL Databases Course (2026)
 
 ---
 
-## 💬 Support Messages
-
-Stores messages exchanged within a support chat.
-
-### Structure
-
-```json
-{
-  "chat_id": "",
-  "sender": "",
-  "content": "",
-  "date_time": "",
-  "is_read": true
-}
-```
-
-### References
-
-| Field   | References   |
-| ------- | ------------ |
-| chat_id | Support Chat |
-
----
-
-# 📋 NoSQL Design Decisions
-
-## Embedded Documents
-
-The following data structures are embedded because they belong exclusively to their parent document:
-
-* Person → Mail
-* Person → Address
-* Product → Specs
-* Order → Products
-
-This reduces the number of queries required to retrieve related information.
-
----
-
-## Referenced Documents
-
-References are used when collections represent independent entities:
-
-* Order → Person
-* Payment → Order
-* Support Chat → Person
-* Support Messages → Support Chat
-
-This approach reduces unnecessary data duplication and improves maintainability.
-
----
-
-# 🎯 Advantages of the Model
-
-* Flexible document structure.
-* Easy scalability.
-* Reduced need for joins.
-* Faster read operations.
-* Suitable for e-commerce workloads.
-* Follows MongoDB document-oriented principles.
-
----
-
-# 👨‍💻 Author
-
-**Miguel Burgos - student of Informatic Engineer - Autumn 2026**
+**Last Updated:** June 2026
