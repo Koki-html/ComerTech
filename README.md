@@ -1,4 +1,4 @@
-# 🗄️ ComerTech
+# 🗄️ DB-NoSQL-4-Evaluation
 
 Repository for the fourth evaluation of the **NoSQL Databases** course at **INACAP (2026)**.
 
@@ -8,45 +8,32 @@ A comprehensive e-commerce platform database solution using MongoDB and Mongoose
 
 ## 📖 Table of Contents
 
-- [🗄️ ComerTech](#️-comertech)
-  - [📖 Table of Contents](#-table-of-contents)
-  - [📖 Project Overview](#-project-overview)
-    - [Objectives](#objectives)
-  - [🛠️ Technologies](#️-technologies)
-  - [🏗️ Project Structure](#️-project-structure)
-  - [📊 Database Model](#-database-model)
-    - [Core Collections](#core-collections)
-    - [Support Collections](#support-collections)
-  - [⚙️ Installation](#️-installation)
-    - [Prerequisites](#prerequisites)
-    - [Setup](#setup)
-  - [🚀 Usage](#-usage)
-    - [Development Mode](#development-mode)
-    - [Production Build](#production-build)
-    - [Testing](#testing)
-  - [📡 API Endpoints](#-api-endpoints)
-    - [Products](#products)
-    - [Customers (Persons)](#customers-persons)
-  - [🤝 Contributing](#-contributing)
-  - [📄 License](#-license)
-  - [👨‍💻 Author](#-author)
+- [Project Overview](#project-overview)
+- [Technologies](#technologies)
+- [Project Structure](#project-structure)
+- [Database Models](#database-models)
+- [Getting Started](#getting-started)
+- [Current Status](#current-status)
+- [Development Roadmap](#development-roadmap)
+- [Documentation](#documentation)
+- [Author](#author)
 
 ---
 
 ## 📖 Project Overview
 
-This project presents the design of a **NoSQL database** for an e-commerce platform using **MongoDB** and **Mongoose**.
+This project presents a fully-designed **NoSQL database** for an e-commerce platform using **MongoDB** and **Mongoose**, with comprehensive TypeScript interfaces and schema definitions.
 
 ### Objectives
 
-The objective is to model and implement the following business domains while applying document-oriented database principles:
+The project models and implements the following business domains:
 
-- 📦 Product Management
-- 👥 Customer Information & Profiles
+- 📦 Product Management (with polymorphic specifications)
+- 👥 Customer Information & Authentication
 - 🛒 Orders & Order Management
 - 💳 Payment Processing
 - 📮 Shipment Tracking
-- 💬 Customer Support System
+- 💬 Customer Support System (Chats & Messages)
 
 ---
 
@@ -59,7 +46,6 @@ The objective is to model and implement the following business domains while app
 | Mongoose   | MongoDB Object Modeling           | ^9.7.2  |
 | Express.js | REST API Framework                | ^5.2.1  |
 | TypeScript | Type-Safe JavaScript              | -       |
-| Vite       | Frontend Build Tool               | ^8.0.16 |
 
 ---
 
@@ -68,49 +54,57 @@ The objective is to model and implement the following business domains while app
 ```
 .
 ├── src/
-│   ├── main.ts                 # Application entry point
-│   ├── controllers/            # Request handlers
-│   ├── routes/                 # API route definitions
-│   ├── models/                 # Mongoose schemas & interfaces
-│   │   ├── person.ts          # Person/Customer model
-│   │   └── product.ts         # Product model
+│   ├── main.ts                      # Application entry point (WIP)
+│   ├── controllers/                 # Request handlers (WIP)
+│   ├── routes/                      # API route definitions (WIP)
+│   ├── models/                      # ✅ Mongoose schemas & interfaces
+│   │   ├── person.ts               # Customer/User model
+│   │   ├── product.ts              # Product catalog model
+│   │   ├── order.ts                # Order model
+│   │   ├── payment.ts              # Payment model
+│   │   ├── shipment.ts             # Shipment tracking model
+│   │   ├── support_chat.ts         # Support chat model
+│   │   ├── support_message.ts      # Support message model
+│   │   └── README.md               # Models documentation
 │   └── database/
-│       └── seed/              # Database seeding scripts
-├── public/                    # Static files
+│       └── seed/                   # Database seeding scripts (WIP)
+├── public/                         # Static files
 │   ├── index.html
-│   ├── media/                 # Images and media assets
-│   └── style/                 # CSS stylesheets
-├── database.json              # Database configuration
+│   ├── media/                      # Images and media assets
+│   └── style/                      # CSS stylesheets
+├── database.json                   # Database configuration
 ├── package.json
 └── README.md
 ```
 
 ---
 
-## 📊 Database Model
+## 📊 Database Models
 
-The database is composed of the following collections:
+All 7 collections are fully modeled with TypeScript interfaces and Mongoose schemas:
 
 ### Core Collections
 
-| Collection       | Purpose                          |
-| --------------- | -------------------------------- |
-| **Products**    | E-commerce product catalog       |
-| **Persons**     | Customer & user information      |
-| **Orders**      | Customer purchases & transactions |
-| **Payments**    | Payment transaction records      |
-| **Shipments**   | Delivery tracking information    |
+| Collection | Model File | Status | Purpose |
+|-----------|-----------|--------|---------|
+| **Persons** | `person.ts` | ✅ Complete | Customer accounts & authentication |
+| **Products** | `product.ts` | ✅ Complete | E-commerce catalog with polymorphic specs |
+| **Orders** | `order.ts` | ✅ Complete | Customer purchases |
+| **Payments** | `payment.ts` | ✅ Complete | Payment transactions |
+| **Shipments** | `shipment.ts` | ✅ Complete | Delivery tracking |
 
 ### Support Collections
 
-| Collection          | Purpose                          |
-| ------------------- | -------------------------------- |
-| **Support Chats**   | Customer support conversations   |
-| **Support Messages**| Individual messages in chats     |
+| Collection | Model File | Status | Purpose |
+|-----------|-----------|--------|---------|
+| **Support Chats** | `support_chat.ts` | ✅ Complete | Support ticket conversations |
+| **Support Messages** | `support_message.ts` | ✅ Complete | Messages within chats |
+
+**For detailed model documentation, see [src/models/README.md](src/models/README.md)**
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Getting Started
 
 ### Prerequisites
 
@@ -118,7 +112,7 @@ The database is composed of the following collections:
 - npm or yarn package manager
 - MongoDB instance (local or cloud)
 
-### Setup
+### Installation
 
 1. **Clone the repository**
    ```bash
@@ -131,78 +125,55 @@ The database is composed of the following collections:
    npm install
    ```
 
-3. **Configure environment variables**
-   ```bash
-   # Create a .env file with your MongoDB connection string
-   MONGODB_URI=mongodb://localhost:27017/db-nosql-evaluation
-   PORT=3000
-   ```
+---
 
-4. **Seed the database** (optional)
-   ```bash
-   npm run seed
-   ```
 
 ---
 
-## 🚀 Usage
+## 📝 Documentation
 
-### Development Mode
+- **[Models Documentation](src/models/README.md)** - Detailed schema definitions and complete workflow example
+- **[Package Configuration](package.json)** - Dependencies and project metadata
 
-```bash
-npm run dev
-```
+---
 
-### Production Build
+## 🔧 Scripts
 
-```bash
-npm run build
-npm start
-```
-
-### Testing
+Currently defined npm scripts:
 
 ```bash
+# Run tests (placeholder)
 npm test
 ```
+
+**Future scripts to add:**
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build TypeScript to JavaScript
+- `npm start` - Run production server
+- `npm run seed` - Seed database with sample data
 
 ---
 
 ## 📡 API Endpoints
 
-*(To be documented based on your controllers)*
+*(To be implemented)*
 
-### Products
-- `GET /api/products` - List all products
-- `GET /api/products/:id` - Get product details
-- `POST /api/products` - Create new product
-- `PUT /api/products/:id` - Update product
-- `DELETE /api/products/:id` - Delete product
-
-### Customers (Persons)
-- `GET /api/persons` - List all customers
-- `GET /api/persons/:id` - Get customer details
-- `POST /api/persons` - Register new customer
-- `PUT /api/persons/:id` - Update customer
-- `DELETE /api/persons/:id` - Delete customer
 
 ---
 
-## 🤝 Contributing
+## 💡 Key Features
 
-This is an academic project. For improvements or bug reports, please open an issue or submit a pull request.
+### Polymorphic Product System
+Products support dynamic specifications based on type (cellphone, clothes, videogame). The `specs` field uses MongoDB's Mixed type to store type-specific attributes.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### Relationship Management
+Models use Mongoose references (`ref`) to establish relationships between collections, enabling efficient data population and queries.
 
----
+### Type Safety
+All models include TypeScript interfaces ensuring compile-time type checking and IDE autocompletion.
 
-## 📄 License
-
-This project is licensed under the ISC License - see the LICENSE file for details.
+### Comprehensive Validation
+Schemas define required fields, unique constraints, and default values for data integrity.
 
 ---
 
@@ -211,5 +182,7 @@ This project is licensed under the ISC License - see the LICENSE file for detail
 **Koki** - Created for INACAP NoSQL Databases Course (2026)
 
 ---
+
+**Project Status:** Design Phase incomplete | Implementation In Progress
 
 **Last Updated:** June 2026
