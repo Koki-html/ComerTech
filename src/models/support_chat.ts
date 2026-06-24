@@ -1,11 +1,16 @@
+/**
+ * Support chat model
+ * - Represents a support ticket or chat session initiated by a customer.
+ * - Links to the `Person` who opened the chat and optionally the related order.
+ */
 import mongoose, { Schema, model } from 'mongoose';
 
 export interface ISupportChat {
-    person_id: mongoose.Types.ObjectId;
-    number_order: string;
-    created_at: Date;
-    updated_at: Date;
-    status: string;
+    person_id: mongoose.Types.ObjectId; // Reference to Person who opened the chat
+    number_order: string; // Order number related to the support request
+    created_at: Date; // Creation timestamp (managed by Mongoose)
+    updated_at: Date; // Update timestamp (managed by Mongoose)
+    status: string; // Chat status (open, closed, resolved)
 }
 
 const supportChatSchema = new Schema<ISupportChat>({

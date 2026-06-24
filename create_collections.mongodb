@@ -1,0 +1,19 @@
+// MongoDB Collections Creation Script
+// Este archivo contiene los comandos para crear las colecciones manualmente en MongoDB
+// Úsalo en mongosh para crear la estructura base de la base de datos
+
+// Opción 1: Desde bash
+// mongosh "mongodb://127.0.0.1:27017/ComerceTech" < create_collections.mongodb
+
+// Opción 2: Dentro de mongosh
+// Primero conecta: mongosh "mongodb://127.0.0.1:27017/ComerceTech"
+// Luego copia y pega los comandos debajo
+
+// Crear colecciones
+db.createCollection("orders");
+db.createCollection("payments");
+db.createCollection("persons");
+db.createCollection("products");
+db.createCollection("shipments");
+db.createCollection("supportchats");
+db.createCollection("supportmessages");

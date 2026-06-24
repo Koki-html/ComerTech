@@ -1,35 +1,43 @@
+/**
+ * Product model
+ * - Represents catalog items with flexible `specs` depending on the product type.
+ * - Small feature interfaces are provided for common product categories such as
+ *   cell phones, clothes, and videogames.
+ */
 import mongoose, { Schema, model } from 'mongoose';
 
-// By a simplify becouse this is a homework, i will do this.. (i don't want to create any type of feature posible.. Sorry)
+// Example feature types for different product categories
 interface IFeatureCellPhones {
-    ram: number;
-    storage: string;
+    ram: number; // RAM size in GB
+    storage: string; // Storage description (e.g. "128GB")
 }
 
 interface IFeatureClothes {
-    size?: string;
-    color?: string;
+    size?: string; // Optional size (S, M, L, etc.)
+    color?: string; // Optional color
 }
 
 interface IFeatureVideogames {
-    platform?: string;
+    platform?: string; // e.g. PC, PS5, Xbox
 }
 
+// Product document shape
 export interface IProduct {
-    name: string;
-    model: string;
-    brand: string;
-    price: number;
-    type_product: string;
-    created_at: Date;
-    updated_at: Date;
-    stock: number;
-    specs: IFeatureCellPhones | IFeatureClothes | IFeatureVideogames;
-    description: string;
-    images: string[];
-    is_active: boolean;
+    name: string; // Product display name
+    model: string; // Model or SKU
+    brand: string; // Manufacturer
+    price: number; // Current price
+    type_product: string; // Category/type of product
+    created_at: Date; // Creation timestamp (managed by Mongoose)
+    updated_at: Date; // Update timestamp (managed by Mongoose)
+    stock: number; // Units available
+    specs: IFeatureCellPhones | IFeatureClothes | IFeatureVideogames; // Dynamic specs
+    description: string; // Description text
+    images: string[]; // Array of image URLs
+    is_active: boolean; // Active flag for catalog visibility
 }
 
+// Mongoose schema for products
 const productSchema = new Schema<IProduct>({
     model: { type: String, required: true },
     brand: { type: String, required: true },

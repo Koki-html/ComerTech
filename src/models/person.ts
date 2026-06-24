@@ -1,27 +1,34 @@
+/**
+ * Person model
+ * - Stores customer/user profile information required for orders and support.
+ * - Includes contact details, authentication hash, and postal address.
+ */
 import mongoose, { Schema, Document } from 'mongoose';
 
+// Shape of a person/customer document
 export interface IPerson {
-    name : string,
-    rut: string,
+    name : string; // Full name
+    rut: string; // National ID or unique identifier
     mail: {
-        mail_adress: string,
-        is_verified: boolean
-    },
-    phone: string,
-    alt_phone: string,
-    password_hash: string,
-    birth_date: string,
-    gender: string,
+        mail_adress: string; // Email address
+        is_verified: boolean; // Email verification flag
+    };
+    phone: string; // Primary phone number
+    alt_phone: string; // Optional secondary phone number
+    password_hash: string; // Hashed password for authentication
+    birth_date: string; // Birth date (stored as string or date)
+    gender: string; // Gender
     adress: {
-        region: string,
-        comune: string,
-        street: string,
-        number: string,
-        apartment: string
+        region: string; // Region/State
+        comune: string; // Municipality
+        street: string;
+        number: string; // Street number
+        apartment: string; // Optional apartment/unit
     }
 
 }
 
+// Mongoose schema for person documents
 const PersonSchema: Schema = new Schema({
     name: { type: String, required: true},
     rut: { type: String, required: true},
@@ -43,5 +50,5 @@ const PersonSchema: Schema = new Schema({
     },
 });
 
-export const Person = mongoose.model<IPerson>('Person', PersonSchema);
+export const PersonModel = mongoose.model<IPerson>('Person', PersonSchema);
 
