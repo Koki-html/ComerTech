@@ -1,0 +1,225 @@
+// =========================
+// CREACIÓN COLLECTIONS
+// =========================
+
+db.createCollection("products")
+db.createCollection("persons")
+db.createCollection("shipments")
+db.createCollection("orders")
+db.createCollection("payments")
+db.createCollection("support_chat")
+db.createCollection("support_messages")
+
+
+
+
+db.products.insertMany([
+{
+    _id:"PROD001",
+    name:"iPhone 15",
+    model:"A3090",
+    brand:"Apple",
+    price:899990,
+    type_product:"Celular",
+    created_at:"2026-06-23",
+    updated_at:"2026-06-23",
+    stock:15,
+    specs:{
+        ram:"6GB",
+        storage:"128GB",
+        cpu:"A16 Bionic"
+    },
+    description:"Smartphone gama alta",
+    images:["iphone15.jpg"],
+    is_active:true
+},
+{
+    _id:"PROD002",
+    name:"RTX 4060",
+    model:"RTX4060",
+    brand:"Nvidia",
+    price:329990,
+    type_product:"GPU",
+    created_at:"2026-06-23",
+    updated_at:"2026-06-23",
+    stock:10,
+    specs:{
+        vram:"8GB",
+        bus:"128-bit"
+    },
+    description:"Tarjeta grafica para gaming",
+    images:["rtx4060.jpg"],
+    is_active:true
+},
+{
+    _id:"PROD003",
+    name:"Polera Oversize",
+    model:"PO2026",
+    brand:"Urban",
+    price:19990,
+    type_product:"Ropa",
+    created_at:"2026-06-23",
+    updated_at:"2026-06-23",
+    stock:40,
+    specs:{
+        size:"M",
+        material:"Algodon"
+    },
+    description:"Polera urbana",
+    images:["polera.jpg"],
+    is_active:true
+}
+])
+
+db.persons.insertMany([
+{
+    _id:"P001",
+    name:"Juan Perez",
+    rut:"19.345.678-2",
+    mail:{
+        mail_addres:"juan@gmail.com",
+        is_verified:true
+    },
+    phone:"+56911111111",
+    alt_phone:"+56922222222",
+    password_hash:"hash123",
+    birth_date:"2002-05-20",
+    gender:"M",
+    address:{
+        region:"Metropolitana",
+        commune:"Santiago",
+        street:"Av Central",
+        number:"123",
+        apartment:"401"
+    }
+},
+{
+    _id:"P002",
+    name:"Camila Soto",
+    rut:"18.222.333-1",
+    mail:{
+        mail_addres:"camila@gmail.com",
+        is_verified:true
+    },
+    phone:"+56933333333",
+    alt_phone:"",
+    password_hash:"hash456",
+    birth_date:"2001-11-12",
+    gender:"F",
+    address:{
+        region:"Valparaiso",
+        commune:"Viña del Mar",
+        street:"Los Heroes",
+        number:"55",
+        apartment:"12"
+    }
+}
+])
+
+db.orders.insertMany([
+{
+    _id:"ORD001",
+    receipt_number:"00001",
+    person_id:"P001",
+    products:[
+        {
+            product_id:"PROD001",
+            amount:1,
+            unit_price:899990
+        }
+    ],
+    total_price:899990,
+    status:"Pagado",
+    created_at:"2026-06-23",
+    updated_at:"2026-06-23"
+},
+{
+    _id:"ORD002",
+    receipt_number:"00002",
+    person_id:"P002",
+    products:[
+        {
+            product_id:"PROD002",
+            amount:2,
+            unit_price:329990
+        },
+        {
+            product_id:"PROD003",
+            amount:1,
+            unit_price:19990
+        }
+    ],
+    total_price:679970,
+    status:"Enviado",
+    created_at:"2026-06-23",
+    updated_at:"2026-06-23"
+}
+])
+
+db.payments.insertMany([
+{
+    _id:"PAY001",
+    order_id:"ORD001",
+    amount:899990,
+    payment_method:"WebPay",
+    status:"Aprobado",
+    created_at:"2026-06-23"
+},
+{
+    _id:"PAY002",
+    order_id:"ORD002",
+    amount:679970,
+    payment_method:"Transferencia",
+    status:"Aprobado",
+    created_at:"2026-06-23"
+}
+])
+
+db.shipments.insertMany([
+{
+    _id:"SHIP001",
+    company:"Chilexpress",
+    tracking_number:"CL123456",
+    receipt_number:"00001",
+    mailing_address:"Av Central 123 Santiago",
+    status:"Entregado"
+},
+{
+    _id:"SHIP002",
+    company:"Starken",
+    tracking_number:"ST987654",
+    receipt_number:"00002",
+    mailing_address:"Los Heroes 55 Viña",
+    status:"En camino"
+}
+])
+
+db.support_chat.insertMany([
+{
+    _id:"CHAT001",
+    person_id:"P001",
+    number_order:"ORD001",
+    created_at:"2026-06-23",
+    updated_at:"2026-06-23",
+    status:"Abierto"
+}
+])
+
+db.support_messages.insertMany([
+{
+    _id:"MSG001",
+    chat_id:"CHAT001",
+    sender:"client",
+    content:"Hola, quiero saber el estado de mi pedido",
+    date_time:"2026-06-23 15:00",
+    is_read:true
+},
+{
+    _id:"MSG002",
+    chat_id:"CHAT001",
+    sender:"support",
+    content:"Tu pedido fue enviado correctamente",
+    date_time:"2026-06-23 15:05",
+    is_read:true
+}
+])
